@@ -31,7 +31,6 @@ The platform also includes a dedicated **Admin Console** for managing users, los
 * [Database Models](#-database-models)
 * [Security](#-security)
 * [Production Build](#-production-build)
-* [Screenshots](#-screenshots)
 * [Troubleshooting](#-troubleshooting)
 * [Future Improvements](#-future-improvements)
 * [Contributing](#-contributing)
