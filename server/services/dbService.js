@@ -639,38 +639,98 @@ export const dbService = {
     });
   },
 
-  // SYSTEM STATS (for Admin Analytics)
-  async getStats() {
-    let usersCount, lostCount, foundCount, resolvedCount, claimsCount, pendingAbuseCount;
+//   // SYSTEM STATS (for Admin Analytics)
+//   async getStats() {
+//     let usersCount, lostCount, foundCount, resolvedCount, claimsCount, pendingAbuseCount;
 
-    if (getDbStatus().connected) {
-      [usersCount, lostCount, foundCount, resolvedCount, claimsCount, pendingAbuseCount] = await Promise.all([
-        User.countDocuments(),
+//     if (getDbStatus().connected) {
+//       [usersCount, lostCount, foundCount, resolvedCount, claimsCount, pendingAbuseCount] = await Promise.all([
+//         User.countDocuments(),
+//         Item.countDocuments({ type: 'LOST' }),
+//         Item.countDocuments({ type: 'FOUND' }),
+//         Item.countDocuments({ status: 'RESOLVED' }),
+//         Claim.countDocuments(),
+//         AbuseReport.countDocuments({ status: 'PENDING' })
+//       ]);
+//     } else {
+//       usersCount = store.users.length;
+//       lostCount = store.items.filter(it => it.type === 'LOST').length;
+//       foundCount = store.items.filter(it => it.type === 'FOUND').length;
+//       resolvedCount = store.items.filter(it => it.status === 'RESOLVED').length;
+//       claimsCount = store.claims.length;
+//       pendingAbuseCount = store.abuseReports.filter(r => r.status === 'PENDING').length;
+//     }
+
+//     return {
+//       totalUsers: usersCount,
+//       totalLost: lostCount,
+//       totalFound: foundCount,
+//       totalResolved: resolvedCount,
+//       activeClaims: claimsCount,
+//       pendingReports: pendingAbuseCount,
+//       dbStatus: getDbStatus()
+//     };
+//   }
+// };
+
+  // SYSTEM STATS (for Admin Analytics)
+async getStats() {
+  let usersCount, lostCount, foundCount, resolvedCount, claimsCount, pendingAbuseCount;
+
+  if (getDbStatus().connected) {
+    [usersCount, lostCount, foundCount, resolvedCount, claimsCount, pendingAbuseCount] =
+      await Promise.all([
+        // Only non-blocked users are considered active community users
+        User.countDocuments({ isBlocked: { $ne: true } }),
+
+        // Total lost items reported
         Item.countDocuments({ type: 'LOST' }),
+
+        // Total found items registered
         Item.countDocuments({ type: 'FOUND' }),
+
+        // Items successfully returned/resolved
         Item.countDocuments({ status: 'RESOLVED' }),
+
+        // Total claims
         Claim.countDocuments(),
+
+        // Pending abuse reports
         AbuseReport.countDocuments({ status: 'PENDING' })
       ]);
-    } else {
-      usersCount = store.users.length;
-      lostCount = store.items.filter(it => it.type === 'LOST').length;
-      foundCount = store.items.filter(it => it.type === 'FOUND').length;
-      resolvedCount = store.items.filter(it => it.status === 'RESOLVED').length;
-      claimsCount = store.claims.length;
-      pendingAbuseCount = store.abuseReports.filter(r => r.status === 'PENDING').length;
-    }
+  } else {
+    // Active / non-blocked users
+    usersCount = store.users.filter(user => user.isBlocked !== true).length;
 
-    return {
-      totalUsers: usersCount,
-      totalLost: lostCount,
-      totalFound: foundCount,
-      totalResolved: resolvedCount,
-      activeClaims: claimsCount,
-      pendingReports: pendingAbuseCount,
-      dbStatus: getDbStatus()
-    };
+    // Total lost items
+    lostCount = store.items.filter(item => item.type === 'LOST').length;
+
+    // Total found items
+    foundCount = store.items.filter(item => item.type === 'FOUND').length;
+
+    // Successfully returned/resolved items
+    resolvedCount = store.items.filter(item => item.status === 'RESOLVED').length;
+
+    // Total claims
+    claimsCount = store.claims.length;
+
+    // Pending abuse reports
+    pendingAbuseCount = store.abuseReports.filter(
+      report => report.status === 'PENDING'
+    ).length;
   }
+
+  return {
+    totalUsers: usersCount,
+    totalLost: lostCount,
+    totalFound: foundCount,
+    totalResolved: resolvedCount,
+    activeClaims: claimsCount,
+    pendingReports: pendingAbuseCount,
+    dbStatus: getDbStatus()
+  };
+}
+
 };
 
 export default dbService;
