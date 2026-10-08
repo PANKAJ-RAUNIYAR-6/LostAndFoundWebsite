@@ -639,7 +639,7 @@ export const dbService = {
     });
   },
 
-//   // SYSTEM STATS (for Admin Analytics)
+  // SYSTEM STATS (for Admin Analytics)
 //   async getStats() {
 //     let usersCount, lostCount, foundCount, resolvedCount, claimsCount, pendingAbuseCount;
 
@@ -671,9 +671,8 @@ export const dbService = {
 //       dbStatus: getDbStatus()
 //     };
 //   }
-// };
 
-  // SYSTEM STATS (for Admin Analytics)
+// SYSTEM STATS (for Admin Analytics)
 async getStats() {
   let usersCount, lostCount, foundCount, resolvedCount, claimsCount, pendingAbuseCount;
 
@@ -732,5 +731,6 @@ async getStats() {
 }
 
 };
+
 
 export default dbService;

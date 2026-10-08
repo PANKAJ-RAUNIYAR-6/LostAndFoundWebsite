@@ -1,3 +1,9 @@
+
+import dns from 'dns';
+
+dns.setServers(['8.8.8.8', '1.1.1.1']);
+
+
 import http from 'http';
 import path from 'path';
 import { fileURLToPath } from 'url';
