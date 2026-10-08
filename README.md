@@ -6,6 +6,10 @@ The platform also includes a dedicated **Admin Console** for managing users, los
 
 ---
 
+## 🌐 Live Demo
+
+🔗 **Live Website:** https://lostandfoundwebsite-z73d.onrender.com/
+
 ## 📌 Table of Contents
 
 * [About the Project](#-about-the-project)
