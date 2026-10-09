@@ -548,6 +548,10 @@ MONGODB_URI=mongodb://127.0.0.1:27017/lost_and_found
 
 JWT_SECRET=your_secure_random_secret
 
+ADMIN_NAME=Portal Administrator
+ADMIN_EMAIL=your-admin-email@example.com
+ADMIN_PASSWORD=your-strong-admin-password
+
 CLOUDINARY_CLOUD_NAME=your_cloudinary_name
 CLOUDINARY_API_KEY=your_cloudinary_api_key
 CLOUDINARY_API_SECRET=your_cloudinary_api_secret
