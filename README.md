@@ -1506,7 +1506,7 @@ If you plan to distribute or commercially use this project, add an appropriate o
 
 ## Pankaj Rauniyar
 
-🐙 GitHub: [Pankaj Rauniyar](https://github.com/PANKAJ-RAUNIYAR-6/LostAndFoundWebsite/)
+🐙 GitHub: [Pankaj Rauniyar](https://github.com/PANKAJ-RAUNIYAR-6/LostAndFoundWebsite)
 
 Built with ❤️ using:
 
