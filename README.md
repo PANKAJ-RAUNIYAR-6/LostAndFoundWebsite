@@ -1502,9 +1502,11 @@ If you plan to distribute or commercially use this project, add an appropriate o
 
 ---
 
-# 👨‍💻 Author
+# 👤 Author
 
 ## Pankaj Rauniyar
+
+🐙 GitHub: [Pankaj Rauniyar](https://github.com/PANKAJ-RAUNIYAR-6/LostAndFoundWebsite/)
 
 Built with ❤️ using:
 
