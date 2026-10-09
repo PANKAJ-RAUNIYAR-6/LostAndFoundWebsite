@@ -36,8 +36,8 @@ export const Home = () => {
       try {
         const [catsRes, lostRes, foundRes, statsRes, fbRes] = await Promise.all([
           api.getCategories().catch(() => ({ categories: [] })),
-          api.getItems({ type: 'LOST', limit: 4 }).catch(() => ({ items: [] })),
-          api.getItems({ type: 'FOUND', limit: 4 }).catch(() => ({ items: [] })),
+          api.getItems({ type: 'LOST', limit: 6 }).catch(() => ({ items: [] })),
+          api.getItems({ type: 'FOUND', limit: 6 }).catch(() => ({ items: [] })),
           api.getAdminStats().catch(() => ({ stats: {} })),
           api.getFeedbacks().catch(() => ({ feedbacks: [] }))
         ]);
